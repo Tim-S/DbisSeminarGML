@@ -1,0 +1,263 @@
+
+%%%%%%%%%%%%%%%%%%%%%%% xxxxxxxxxxxxxxxx %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	copyright by Springer Heidelberg
+%   http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[runningheads,a4paper]{llncs}
+
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{url} %takes care of proper line breaks for URLs
+\usepackage{hyperref} % creates clickable links and references.
+
+\setlength{\parindent}{0pt} % no indent on new paragraphs
+
+
+\begin{document}
+
+\mainmatter  % start of an individual contribution
+
+% first the title is needed
+\title{Domain Specific Modeling}
+
+% a short form should be given in case it is too long for the running head
+\titlerunning{Lecture Notes in Computer Science: Authors' Instructions}
+
+
+\author{Tim Schneider\\ tim-1.schneider@uni-ulm.de}
+\institute{Institute of Databases and
+Information Systems, Ulm University}
+
+
+\maketitle
+
+
+\begin{abstract}
+%The abstract should summarize the contents of the paper and should
+%contain at least 70 and at most 150 words. It should be written using the
+\emph{abstract} environment.
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:introduction}
+For centuries of people from da Vinci to Einstein have 
+created models to help them better understand patterns and 
+processes in the world around them. Nowadays computers \& smartphones make it easier 
+for both novices and domain experts to build and explore 
+their own models and learn new scientific ideas in the process.
+
+\begin{itemize}
+ \item can help experts and novices builing Models for different domains
+ \item enables novices with few or even no programming skills at all to implement their own models (e.g. MindStorm,Starlogo)
+ \item supports domain experts by setting focus on the domain-specific problems (e.g. SimuLink,BPMN)
+  \end{itemize}
+
+
+\subsection{Foundation}
+\label{subsec:introduction}
+
+\subsubsection{Model}
+\begin{itemize}
+ \item What is a model? (Definition  [Stachowiak]
+ + some Explanation)
+ \item Abstraction: Remove details which do not serve the purpose
+
+ \item Homomorphism: Statements on model elements hold for real world entities
+ \item Pragmatics: Model has some purpose
+ \item + example (novice) house Made of LEGOS $\rightarrow $ Model for a ``real'' house / building
+ \item + example (expert) blueprints from an architekt $\rightarrow $ different model, but  represents same object in real 
+ world
+ 
+ \item Abstraction brings representational bias 
+ \item $\rightarrow$ electric cable installations, water pipes cannot be ``expressed'' in lego but they can with blueprints
+ \item $\rightarrow$ lego allows 3D Modeling while Blueprints cannot (oonly via 2d projections/ optical illusions)
+ \end{itemize}
+  
+\subsubsection{Domain}
+\begin{itemize}
+ \item novice and expert have different views on the same thing  but use different models / languages
+ \item both models may be used in the context of a domain (Architekture)
+ \item What is a Domain? (Definition + some Explanation)
+  \end{itemize}
+  
+ \subsection{Domain Specific Languages}
+ \begin{itemize}
+ \item different approaches :  Graphical Modeling Languages, Textual Modeling Languages
+ \item 
+   \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
+      \captionof{figure}{comparison between textual modeling language and graphcal modeling language for the same model}
+    \end{figure}
+ 
+ \item examples (domain experts): BPMN , SimuLink
+ \item examples (novice ): STARLOGO 
+ \end{itemize}
+ 
+ \section{Existing Modeling Languages}
+ 
+ \subsection{StarLogo TNG}
+
+  \begin{itemize}
+  \item is a client-based modeling and simulation software
+  \item enables secondary school students and teachers to model decentralized systems through agent-based programming
+  \item facilitates the creation and understanding of simulations of complex systems
+  \item graphical programming blocks instead of text-based computer code
+  \end{itemize}
+  
+  \begin{figure}[ht]
+	\centering
+  \includegraphics[width=0.5\textwidth]{images/StarLogoTNGBlocksEx.PNG}
+	\caption{ StarLogo TNG’s graphical programming blocks. Example if (left) and repeat (right) blocks are shown. The
+	  if block commands a Turtle agent to take two steps forward if it is green; the repeat block commands an agent to
+	  repeat five times the sequence of turning right 15 degrees and taking one step forward.}
+	\label{fig1}
+  \end{figure}
+  
+   \subsection{Snatch}
+
+  \begin{itemize}
+  \item Graphical Modeling Language (similar to StarLogo)
+  \item developers goal: ``make it easy for everyone,
+of all ages, backgrounds, and interests, to program
+their own interactive stories, games, animations, and
+simulations, and share their creations with one another''
+  \end{itemize}
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth]{images/Snatch1.PNG}
+      \captionof{figure}{Sample Scratch script (from Pong-like paddle game) highlighting computational
+and mathematical concepts}
+    \end{figure}
+  
+  
+  \subsection{PhyDSL}
+
+  \begin{itemize}
+  \item textual modeling for (simple) game dev domain
+  \item based on EMF
+  \item allows codegeneration from the created models
+  \item mobile gameplay definition sections:
+    \begin{itemize}
+    \item static actor definition
+    \item environment and layout definition
+    \item activities definition
+    \item scoring rules definition
+    \end{itemize}
+  
+  \end{itemize}
+     \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=\textwidth]{images/PhyDSL1.PNG}
+      \captionof{figure}{PhyDSL: static actor definition}
+    \end{figure}
+       \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=\textwidth]{images/PhyDSL2.PNG}
+      \captionof{figure}{PhyDSL: environment and layout definition}
+    \end{figure}
+  \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=\textwidth]{images/PhyDSL3.PNG}
+      \captionof{figure}{PhyDSL: activities definition}
+    \end{figure}
+  
+   \subsection{Lego Mindstorms}
+  \begin{itemize}
+  \item EV3 Programmer App or Computer Software for programming lego robots in a graphical syntax 
+  \item action blocks (Green), flow blocks (Orange), sensor blocks (Yellow), data operation blocks (Red), advanced blocks (Dark blue)
+  \item programms are executed on the EV3 P-brick. 
+  %https://www.lego.com/en-us/mindstorms/learn-to-program
+  \end{itemize}
+  
+  \begin{minipage}{.5\textwidth} %
+	  \centering
+    \includegraphics[width=\textwidth]{images/LearnToProgram_action_blocks_landscape.png}
+	  \captionof{figure}{The action blocks control the actions of the program, e.g. motor rotations, image, sound and the light on the EV3 P-brick.}
+  \end{minipage} %
+  \begin{minipage}{.5\textwidth} %
+	  \centering
+    \includegraphics[width=\textwidth]{images/LearnToProgram_sensor_blocks_landscape.png}
+	 \captionof{figure}{The sensor blocks allow to read the inputs e.g. from a Color sensor, IR sensor, Touch sensor.}
+  \end{minipage}
+  \begin{minipage}{.5\textwidth} %
+	  \centering
+    \includegraphics[width=\textwidth]{images/LearnToProgram_operations_blocks_landscape.png}
+    \captionof{figure}{The data operation blocks let the user write and read variables, compare values for example.}
+  \end{minipage}
+  \begin{minipage}{.5\textwidth} %
+	  \centering
+    \includegraphics[width=\textwidth]{images/LearnToProgram_flow_blocks_landscape.png}
+    \captionof{figure}{The Flow blocks control the flow of the program.}
+  \end{minipage}
+  
+  
+    \begin{figure}[ht]
+	  \centering
+    \includegraphics[width=0.5\textwidth]{images/mindstorms0.PNG}
+	  \caption{EV3 Programmer App used to create programms using a graphical syntax based on blocks }
+    \end{figure}
+
+    \subsection{Sensr}
+    \begin{itemize}
+     \item enables people without programming skills to build mobile data collection and management tools for citizen science
+    \end{itemize}
+
+    
+    \section{Creating Domain Specific Models}
+    
+    \subsection{Ecplise EMF}
+     \subsection{Ecore}
+      \begin{itemize}
+	\item  a meta model  for describing models and runtime support for the models .
+    \end{itemize}
+    
+    \subsection{Xtext}
+    \begin{itemize}
+      \item used to create textual DSLs for ecore (meta-)models designed in EMF
+      \item syntax similar to EBNF
+      \item one rule for each (meta-)model element
+    \end{itemize}
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth]{images/XTextGrammar.PNG}
+      \captionof{figure}{XText Sample Grammar}
+    \end{figure}
+    
+    \subsection{GMF}
+     \begin{itemize}
+     \item used to create graphcal DSLs for  models described in Ecore
+     \item connects domain model and a graphical model via mapping modell
+    \end{itemize}
+    
+    \begin{figure}[ht]
+      \centering
+      \includegraphics[width=\textwidth]{images/TableGMFSteps.PNG}
+      \captionof{figure}{}
+    \end{figure}
+
+\section{Summary}\label{sec:summary}
+\begin{itemize}
+ \item DSM allows novices to build and explore 
+their own models and learn new scientific ideas in the process
+\item domain experts are supported by setting focus on domain specific problems
+\end{itemize}
+
+  
+% 
+% ---- Bibliography ----
+% 
+\nocite{*}
+
+\bibliographystyle{splncs}
+\bibliography{citations}
+\end{document}
+
