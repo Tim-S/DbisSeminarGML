@@ -51,7 +51,7 @@ Domain Experts on the other hand may use modeling languages (e.g. SimuLink,BPMN)
 which allow them to focus on domain-specific problems instead of implementation-specific details like supported 
 language features of a programming language.
 In this paper we will give an overview over different domain-specific modeling langues with a focus on modeling languages for novices
-as well as describe features offered Xtext and GMF (from the Eclipse Modeling framework) supporting the creation of textual and graphical modeling languages.
+as well as describe features offered by Xtext and GMF (from the Eclipse Modeling framework) supporting the creation of textual and graphical modeling languages.
 \end{abstract}
 
 \section{Introduction}
@@ -119,7 +119,7 @@ terms \emph{model} and \emph{domain}.
   details like materials and some 3D information. 
   We can see from this example that these abstraction also brings a representational bias:
   Electric cable installations and water pipes cannot be modeled in LEGO but they can with blueprints.
-  LEGO models on ther other hand allow us to model in 3D Structures while blueprints, because of thei 2D representation, cannot.
+  LEGO models on ther other hand allows to model structures directly in 3D while blueprints cannot.
   
 \subsubsection{Domain}
   
@@ -151,6 +151,7 @@ terms \emph{model} and \emph{domain}.
       \centering
       \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
       \captionof{figure}{comparison between textual modeling language and graphcal modeling language for the same model}
+      \label{compare:textgraphiclang}
     \end{figure}
 
  Users have different levels of expertise in a domain: a Software-Engineer has a more detailed knowledge in the computer science domain as a medical doctor.
@@ -180,7 +181,7 @@ terms \emph{model} and \emph{domain}.
   StarLogo is a client based modeling software, developed specifically to enable students to 
   create models for the simulation of complex systems without extensive programming skills \cite{klopfer2009starlogo}.
   It provides a graphical modeling language using blocks instead of a textual syntax. 
-  The blocks are coloured based on the function they have in the program and their shapes only allow syntactically correct constructs \cite{klopfer2009starlogo}.
+  These blocks are coloured based on the function they have in the program and their shapes only allow syntactically correct constructs \cite{klopfer2009starlogo}.
   This eases the learning of basic programming concepts such as control-flow (e.g. loops, if-then statements),
   assignments and methods by providing intuitive graphical mappings. Since StarLogo TNG uses these puzzle-piece shapes, understanding 
   control-flow, for example, ``requires little more than visually parsing the if or repeat commands 
@@ -234,10 +235,10 @@ and mathematical concepts}
   It is based on the \emph{Eclipse Modeling Framework}\cite{} (EMF) and uses codegeneration for deriving C\# code supported by Microsoft’s
   DirectX API. 
   The modeling language provided by PhyDSL consists of four gameplay definition sections: mobile and
-  static actor definition (example: Figure \ref{actordef}), 
-  environment and layout definition (example: Figure \ref{envdef}), 
-  activities definition (example: Figure  \ref{activitiesdef}), 
-  and scoring rules definition (example: Figure \ref{rulesdef}).
+  static actor definition (Fig. \ref{actordef}), 
+  environment and layout definition (Fig. \ref{envdef}), 
+  activities definition (Fig. \ref{activitiesdef}), 
+  and scoring rules definition (Fig. \ref{rulesdef}).
   
 %  \begin{itemize}
 %   \item textual modeling for (simple) game dev domain
@@ -280,14 +281,22 @@ and mathematical concepts}
       \label{rulesdef}
     \end{figure}
 
-
-   \subsection{Lego Mindstorms}
-  \begin{itemize}
-  \item EV3 Programmer App or Computer Software for programming lego robots in a graphical syntax 
-  \item action blocks (Green), flow blocks (Orange), sensor blocks (Yellow), data operation blocks (Red), advanced blocks (Dark blue)
-  \item programms are executed on the EV3 P-brick. 
-  %https://www.lego.com/en-us/mindstorms/learn-to-program
-  \end{itemize}
+   \pagebreak
+   
+   \subsection{LEGO Mindstorms}
+   Another example for a graphical modeling language made for novices is the EV3 Programmer App
+   for LEGO Mindstorms which includes a block-based graphical modeling langue for creating programms
+   for the LEGO MindStorm Robots. Programs are loaded and executed on a EV3 P-brick \ref{ev3pbrick}, 
+   which offers input and output connections for interaction with sensors and actuators.
+   Different colors are used to indicate wether a blocks triggers some action (green), is used for flow control (orange),
+   reads data from some input (e.g. color sensor)(yellow) or trigger some data operation (e.g. read/write some variable).
+   
+%   \begin{itemize}
+%   \item EV3 Programmer App or Computer Software for programming lego robots in a graphical syntax 
+%   \item action blocks (green), flow blocks (orange), sensor blocks (yellow), data operation blocks (red), advanced blocks (dark blue)
+%   \item programms are executed on the EV3 P-brick. 
+%   %https://www.lego.com/en-us/mindstorms/learn-to-program
+%   \end{itemize}
   
   \begin{minipage}{.5\textwidth} %
 	  \centering
@@ -297,7 +306,7 @@ and mathematical concepts}
   \begin{minipage}{.5\textwidth} %
 	  \centering
     \includegraphics[width=\textwidth]{images/LearnToProgram_sensor_blocks_landscape.png}
-	 \captionof{figure}{The sensor blocks allow to read the inputs e.g. from a Color sensor, IR sensor, Touch sensor.}
+	 \captionof{figure}{The sensor blocks allow to read the inputs e.g. from a color sensor, IR sensor, touch sensor.}
   \end{minipage}
   \begin{minipage}{.5\textwidth} %
 	  \centering
@@ -308,13 +317,14 @@ and mathematical concepts}
 	  \centering
     \includegraphics[width=\textwidth]{images/LearnToProgram_flow_blocks_landscape.png}
     \captionof{figure}{The Flow blocks control the flow of the program.}
+    \label{ev3pbrick}
   \end{minipage}
   
   
     \begin{figure}[ht]
 	  \centering
     \includegraphics[width=0.5\textwidth]{images/mindstorms0.PNG}
-	  \caption{EV3 Programmer App used to create programms using a graphical syntax based on blocks }
+	  \caption{EV3 Programmer App on a tablet used to create programms using a graphical modeling language}
     \end{figure}
 
     \subsection{Sensr}
@@ -324,26 +334,39 @@ and mathematical concepts}
 
     
     \section{Creating Domain Specific Modeling Languages}
-    Domain Specific Modeling Languages are implemented in various software tools, using textual or graphical modeling languages.
+    Domain Specific Modeling Languages are implemented in various software tools using textual or graphical modeling languages.
+    In fact, there are approaches to define these modeling languages as models using some kind of meta-language.
+    Xtext and GMF are implementions from the Eclipse Modeling Framework (EMF), which adopt this approach.
     
-    \subsection{Ecplise EMF}
-     \subsection{Ecore}
-      \begin{itemize}
+    \subsection{Ecore}
+    Xtext and GMF use a 
+    \begin{itemize}
 	\item  a meta model  for describing models and runtime support for the models .
     \end{itemize}
     
     \subsection{Xtext}
-    \begin{itemize}
-      \item used to create textual DSLs for ecore (meta-)models designed in EMF
-      \item syntax similar to EBNF
-      \item one rule for each (meta-)model element
-    \end{itemize}
-    \begin{figure}[ht]
+    Xtext is a framework for development of programming languages and domain specific modeling languages \cite{eysholdt2010xtext}.
+    It uses a syntax similar to extended backus\–naur form (EBNF) to describe custom textual modeling languages. 
+    From this modeling language definition Xtext generates a custom Text-Editor for Eclipse whose features include code-completion and syntax-highlighting
+    as well as a parser for parsing models from text files specified in the defined grammar. This makes it easy for experts of the language design
+    domain to create models for custom modeling languages without programming skills or knowledge on how to implement a parser.
+    As the modeling language definitions are stored in the Ecore format, other tools in the EMF framework can process data from the parsed 
+    models (e.g. Acceleo\cite{musset2006acceleo} for performing codegeneration).  
+    
+    \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/XTextGrammar.PNG}
-      \captionof{figure}{XText Sample Grammar}
+      \captionof{figure}{Xtext grammar of a textual modeling language for finite state machines. 
+      Figure \ref{compare:textgraphiclang} contains an textual description of a state machine 
+      which follows this grammar definition.}
     \end{figure}
-    
+   
+%     \begin{itemize}
+%       \item used to create textual DSLs for ecore (meta-)models designed in EMF
+%       \item syntax similar to EBNF
+%       \item one rule for each (meta-)model element
+%     \end{itemize}
+%     
     \subsection{GMF}
      \begin{itemize}
      \item used to create graphcal DSLs for  models described in Ecore
