@@ -50,10 +50,9 @@ skills to implement their own models.
 Domain Experts on the other hand may use modeling languages (e.g. SimuLink,BPMN) designed for a domain to create models, 
 which allow them to focus on domain-specific problems instead of implementation-specific details like supported 
 language features of a programming language.
-In this paper we will give an overview over different domain-specific modeling langues for both, novices and experts
-as well as present a toolchain for creating modeling languages. 
+In this paper we will give an overview over different domain-specific modeling langues with a focus on modeling languages for novices
+as well as describe features offered Xtext and GMF (from the Eclipse Modeling framework) supporting the creation of textual and graphical modeling languages.
 \end{abstract}
-
 
 \section{Introduction}
 \label{sec:introduction}
@@ -64,11 +63,11 @@ and explore their own models and learn new scientific ideas in the process.
 Domain Specific Modeling can support both experts and novices in building models for different domains.
 There are approaches (e.g. LEGO Mindstorms,Starlogo) that enable novices with few or even no programming 
 skills at all to implement their own models.
-Domain Experts an the other hand may use modeling languages (e.g. SimuLink,BPMN) designed for a domain to create models, 
+Domain experts on the other hand may use modeling languages (e.g. SimuLink,BPMN) designed for a specific domain to create models, 
 which allows them to focus on domain-specific problems instead of implementation-specific details like supported 
-language features of a programming language.
-We will therefore give an overview over different domain-specific modeling langues for both, novices and experts
-as well as present a toolchain for creating modeling languages. 
+language features of a general pupose programming language (e.g. C,C++,Java).
+In this paper we will give a an overview about domain specific modeling languages for novices.
+Additionally we will present the tools Xtext and GMF for creating textual and graphical modeling languages. 
 
 % \begin{itemize}
 %  \item can help experts and novices builing Models for different domains
@@ -78,7 +77,7 @@ as well as present a toolchain for creating modeling languages.
 
 \subsection{Foundation}
 \label{subsec:introduction}
-Before speaking about domain specific modeling languages we need to clarify what is meant by the 
+Before speaking about domain specific modeling languages we will give some short definitions for the  
 terms \emph{model} and \emph{domain}.
 
 \subsubsection{Model}
@@ -98,7 +97,7 @@ terms \emph{model} and \emph{domain}.
 %  \item $\rightarrow$ lego allows 3D Modeling while Blueprints cannot (oonly via 2d projections/ optical illusions)
 %  \end{itemize}
 %  
-  When speaking about domain specific modeling languages, we need to be aware of what a model is:
+  When speaking about domain specific modeling languages, we need to define what a model is:
   
   \begin{quote}
    A model is a formal representation of entities and relationships in the real world (abstraction) 
@@ -127,7 +126,7 @@ terms \emph{model} and \emph{domain}.
   Although novices (e.g. the child) and experts(e.g. the architect) may have different views on the same thing (e.g. the house)
   they share a common understanding in the concepts of the real world: 
   Both of them know that the concepts ``wall'' and ``roof'' are related to parts of a building and that a house needs both to be a valid house.
-  These common knowledge of the requirements, concepts and functionality in a field of study is a domain (e.g. architecture). 
+  These common knowledge of the requirements, concepts and functionality in a field of study is refered to as a domain (e.g. architecture). 
   
 %  \begin{itemize}
 %  \item novice and expert have different views on the same thing  but use different models / languages
@@ -135,12 +134,10 @@ terms \emph{model} and \emph{domain}.
 %  \item What is a Domain? (Definition + some Explanation)
 %  \end{itemize}
   
- \subsection{Domain Specific Languages}
- Domain specific languages are modeling languages, designed to create models representing entities and relationships from a certain domain,
- containing representations of the concepts of that domain. 
- Domain Specific Modeling Languages support users in building models for different domains.
- We will focus on modeling languages of different software tools, made for user groups from novices with few or even no programming skills to experts 
- with advanced skills programming skills for creating domain specific models. 
+ \subsection{Domain Specific Modeling Languages}
+ Domain specific languages are modeling languages, designed to create models representing entities and relationships of a certain domain,
+ containing textual or graphical representations of relevant concepts from that domain. The pupose of a domain specific modeling languages
+ is to support users in building models from a specific domain.
  
  There are two kinds of modeling languages, which are used in these tools to create models:
  \emph{Graphical Modeling Languages} use graphical shapes and
@@ -155,6 +152,9 @@ terms \emph{model} and \emph{domain}.
       \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
       \captionof{figure}{comparison between textual modeling language and graphcal modeling language for the same model}
     \end{figure}
+
+ Users have different levels of expertise in a domain: a Software-Engineer has a more detailed knowledge in the computer science domain as a medical doctor.
+ We will therefore distinguish between domain experts and novices and focus on domain specific languages for novices in this paper.
  
 %  \begin{itemize}
 %  \item different approaches :  Graphical Modeling Languages, Textual Modeling Languages
@@ -169,7 +169,10 @@ terms \emph{model} and \emph{domain}.
 %  \item examples (novice ): STARLOGO 
 %  \end{itemize}
  
- \section{Existing Modeling Languages}
+ \section{Domain Specific Modeling Languages for Novices}
+ As there is a variety of software tools available, which implement different modeling languages, this section will give an overview 
+ about modeling languages designed to support novices with few or even no programming languages in creating models and help them better 
+ understand patterns and processes in the world around them.
  
  \subsection{StarLogo TNG}
   %enable students to build simulations and learn features of complex systems without extensive background knowledge (Klopfer et al., 2009a; 2009b)
@@ -183,9 +186,10 @@ terms \emph{model} and \emph{domain}.
   control-flow, for example, ``requires little more than visually parsing the if or repeat commands 
   Figure \ref{fig1} to conclude that items placed within the then slot will be performed if the items placed within the 
   test slot are true, or the items placed within the do slot will be subject to the number of repetitions placed within the times slot''\cite{smith2011biology}.
-  
-  Using these puzzle-piece shapes avoids syntactic errors, which are one of the main difficulties in learning textual programming languages.
-  Figure \ref{fig1} shows that the curved shape of a Boolean variable is easy to distinguish from the pointed shape of a number value.
+  Using puzzle-piece shapes for basic programming concept avoids syntactic errors, 
+  which are one of the main difficulties in learning textual programming languages.
+  Figure \ref{fig1} shows an exmaple for the blocks used by StarLogo TNG : 
+  the curved shape of a Boolean variable is easy to distinguish from the pointed shape of a number value.
   
   \begin{figure}[H]
 	\centering
@@ -319,7 +323,8 @@ and mathematical concepts}
     \end{itemize}
 
     
-    \section{Creating Domain Specific Models}
+    \section{Creating Domain Specific Modeling Languages}
+    Domain Specific Modeling Languages are implemented in various software tools, using textual or graphical modeling languages.
     
     \subsection{Ecplise EMF}
      \subsection{Ecore}
