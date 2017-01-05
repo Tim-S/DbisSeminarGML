@@ -16,7 +16,7 @@
 \usepackage{caption}
 \usepackage{url} %takes care of proper line breaks for URLs
 \usepackage{hyperref} % creates clickable links and references.
-
+\usepackage{float}% exact position of figures
 \setlength{\parindent}{0pt} % no indent on new paragraphs
 
 
@@ -102,7 +102,7 @@ terms \emph{model} and \emph{domain}.
   
   \begin{quote}
    A model is a formal representation of entities and relationships in the real world (abstraction) 
-  with a certain correspondence (homomorphism) for a certain purpose (pragmatics) \cite{stachowiak1973allgemein}.
+  with a certain correspondence (homomorphism) for a certain purpose (pragmatics) \cite{stachowiak1973allgemeine}.
   \end{quote}
   
   This definition contains three aspects: abstraction, homomorphism, pragmatics.
@@ -145,12 +145,12 @@ terms \emph{model} and \emph{domain}.
  There are two kinds of modeling languages, which are used in these tools to create models:
  \emph{Graphical Modeling Languages} use graphical shapes and
  \emph{Textual Modeling Languages} use text to represent entities and relationships from the real world.
- The same model may be expressed in both kinds of Modeling languages.
+ The same model may be expressed in both, a graphical or textual modeling languages.
  
  A finite state machine for example can be represented as a set of nodes, labeled boxes and arrows, while it can also be 
  represented by a textual description following a grammar to represent the same finite state machine.
  
-  \begin{figure}[ht]
+  \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
       \captionof{figure}{comparison between textual modeling language and graphcal modeling language for the same model}
@@ -172,23 +172,37 @@ terms \emph{model} and \emph{domain}.
  \section{Existing Modeling Languages}
  
  \subsection{StarLogo TNG}
-
-  \begin{itemize}
-  \item is a client-based modeling and simulation software
-  \item enables secondary school students and teachers to model decentralized systems through agent-based programming
-  \item facilitates the creation and understanding of simulations of complex systems
-  \item graphical programming blocks instead of text-based computer code
-  \end{itemize}
+  %enable students to build simulations and learn features of complex systems without extensive background knowledge (Klopfer et al., 2009a; 2009b)
+  %provides an environment for building agent-based models
+  StarLogo is a client based modeling software, developed specifically to enable students to 
+  create models for the simulation of complex systems without extensive programming skills \cite{klopfer2009starlogo}.
+  It provides a graphical modeling language using blocks instead of a textual syntax. 
+  The blocks are coloured based on the function they have in the program and their shapes only allow syntactically correct constructs \cite{klopfer2009starlogo}.
+  This eases the learning of basic programming concepts such as control-flow (e.g. loops, if-then statements),
+  assignments and methods by providing intuitive graphical mappings. Since StarLogo TNG uses these puzzle-piece shapes, understanding 
+  control-flow, for example, ``requires little more than visually parsing the if or repeat commands 
+  Figure \ref{fig1} to conclude that items placed within the then slot will be performed if the items placed within the 
+  test slot are true, or the items placed within the do slot will be subject to the number of repetitions placed within the times slot''\cite{smith2011biology}.
   
-  \begin{figure}[ht]
+  Using these puzzle-piece shapes avoids syntactic errors, which are one of the main difficulties in learning textual programming languages.
+  Figure \ref{fig1} shows that the curved shape of a Boolean variable is easy to distinguish from the pointed shape of a number value.
+  
+  \begin{figure}[H]
 	\centering
   \includegraphics[width=0.5\textwidth]{images/StarLogoTNGBlocksEx.PNG}
 	\caption{ StarLogo TNG’s graphical programming blocks. Example if (left) and repeat (right) blocks are shown. The
 	  if block commands a Turtle agent to take two steps forward if it is green; the repeat block commands an agent to
-	  repeat five times the sequence of turning right 15 degrees and taking one step forward.}
+	  repeat five times the sequence of turning right 15 degrees and taking one step forward. (from \cite{smith2011biology})}
 	\label{fig1}
   \end{figure}
   
+  %   \begin{itemize}
+%   \item is a client-based modeling and simulation software
+%   \item enables secondary school students and teachers to model decentralized systems through agent-based programming
+%   \item facilitates the creation and understanding of simulations of complex systems
+%   \item graphical programming blocks instead of text-based computer code
+%   \end{itemize}
+
    \subsection{Snatch}
 
   \begin{itemize}
@@ -198,7 +212,7 @@ of all ages, backgrounds, and interests, to program
 their own interactive stories, games, animations, and
 simulations, and share their creations with one another''
   \end{itemize}
-    \begin{figure}[ht]
+    \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/Snatch1.PNG}
       \captionof{figure}{Sample Scratch script (from Pong-like paddle game) highlighting computational
@@ -207,36 +221,62 @@ and mathematical concepts}
   
   
   \subsection{PhyDSL}
-
-  \begin{itemize}
-  \item textual modeling for (simple) game dev domain
-  \item based on EMF
-  \item allows codegeneration from the created models
-  \item mobile gameplay definition sections:
-    \begin{itemize}
-    \item static actor definition
-    \item environment and layout definition
-    \item activities definition
-    \item scoring rules definition
-    \end{itemize}
+  Both StarLogo and Snatch use graphical modeling languages for creating models. 
+  \emph{PhyDSL} is a tool, designed as an Eclipse\cite{eclipse} plugin that uses a textual modeling language for creating models for the game development domain.
+  It was designed for the purpose of supporting the fast prototyping of physics-based games, including platform, shoot ’em up, 
+  puzzle and maze games \cite{guana2014phydsl}. 
+  The provided frontend includes a text editor (including syntax highlighting and text completion), which is used to define gameplay in highlevel
+  terms describing the gameplay static, dynamic elements and their behaviors by a domain specific language.  
+  It is based on the \emph{Eclipse Modeling Framework}\cite{} (EMF) and uses codegeneration for deriving C\# code supported by Microsoft’s
+  DirectX API. 
+  The modeling language provided by PhyDSL consists of four gameplay definition sections: mobile and
+  static actor definition (example: Figure \ref{actordef}), 
+  environment and layout definition (example: Figure \ref{envdef}), 
+  activities definition (example: Figure  \ref{activitiesdef}), 
+  and scoring rules definition (example: Figure \ref{rulesdef}).
   
-  \end{itemize}
-     \begin{figure}[htbp]
+%  \begin{itemize}
+%   \item textual modeling for (simple) game dev domain
+%   \item based on EMF
+%   \item allows codegeneration from the created models
+%   \item mobile gameplay definition sections:
+%     \begin{itemize}
+%     \item static actor definition
+%     \item environment and layout definition
+%     \item activities definition
+%     \item scoring rules definition
+%     \end{itemize}
+%   
+%   \end{itemize}
+\begin{minipage}{\textwidth}
+     \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/PhyDSL1.PNG}
-      \captionof{figure}{PhyDSL: static actor definition}
+      \captionof{figure}{PhyDSL: static actor definition (from  \cite{guana2014phydsl})}
+      \label{actordef}
     \end{figure}
-       \begin{figure}[htbp]
+      \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/PhyDSL2.PNG}
-      \captionof{figure}{PhyDSL: environment and layout definition}
+      \captionof{figure}{PhyDSL: environment and layout definition(from  \cite{guana2014phydsl})}
+      \label{envdef}
     \end{figure}
-  \begin{figure}[htbp]
+  \begin{figure}[H]
       \centering
       \includegraphics[width=\textwidth]{images/PhyDSL3.PNG}
-      \captionof{figure}{PhyDSL: activities definition}
+      \captionof{figure}{PhyDSL: activities definition(from  \cite{guana2014phydsl})}
+      \label{activitiesdef}
     \end{figure}
-  
+  \end{minipage}
+
+\begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{images/PhyDSL4.PNG}
+      \captionof{figure}{PhyDSL - Scoring Rule Definition for Collision Rules (from  \cite{guana2014phydsl})}
+      \label{rulesdef}
+    \end{figure}
+
+
    \subsection{Lego Mindstorms}
   \begin{itemize}
   \item EV3 Programmer App or Computer Software for programming lego robots in a graphical syntax 
