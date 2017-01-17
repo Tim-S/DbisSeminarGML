@@ -1,0 +1,14 @@
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
+script:
+- mkdir _build
+- pdflatex -output-directory _build seminar.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: ilGEbCrNc4HFacEEZC65bgpMDhcsNNurUQoWTRoa2htO8DPSNEyOzpGb3yfgXgh99XvXz29NrkiJXaPyJYCNBDxZe2sxvaMe9Xcr7WVhycfvSSQQ3qdkxW47Y6hndGgWiKQwlFGCItaQHBteM6BhjjPan0ltXexavGVQWcdqwxnxaH9oz0cARNuHVNCKKYtCG04td7kuWbY71IbR8B/7N1pcK8ejUvaE5Bfpn4hT2rVp8rJ9Dgf9HVPQaoMX8UCNVEbdhS6qTjfdIJZn1EuPKM2WfSuVbxc5EM5p1onbgdkTFjI5IV+t4jPjL8MGjZimHOQpXnPCNOwU0CmSsK5eeqwkU8IVKez0yTX4rQKgyYAau5VQJvumJ0+MfKVoSs+ObHv7Bh4baDmr+ndBXwySeR4FoHx6x0CGvG8aShz2sN+KgXgajPtrtedT9CUItRoh+OiRY4nt5ZDYtUSEOoZPNWOKhDd/4e/ob0W0YDhM7GGwwcKuKOR3YRTViEpt0Rf2HGjRvunHjlehlK3+CO9JE9dOSIjixWfft7jy4qLRH5TTg6wF5mwsmH5anbodJCHZPEbzmvDmovKdNk4tQznQVy5LRf3xIu4XgeiaVf0LkDSNCI+pq4L75TweEHo0TCxDR5SO8TjZsC46MxD9bJCo85uPqhcjvNvoP7CjWVzTwvY=
+  file: _build/seminar.pdf
+  skip_cleanup: true
+  on:
+    repo: Tim-S/DbisSeminarGML
