@@ -11,4 +11,4 @@ deploy:
   file: _build/seminar.pdf
   skip_cleanup: true
   on:
-    repo: Tim-S/DbisSeminarGML
+    tags: true
