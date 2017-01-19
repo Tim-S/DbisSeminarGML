@@ -17,7 +17,7 @@
 \usepackage{url} %takes care of proper line breaks for URLs
 \usepackage{hyperref} % creates clickable links and references.
 \usepackage{float}% exact position of figures
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=bibtex,natbib=true]{biblatex}
 %\usepackage[T1]{fontenc}
 \bibliography{citations}
 
@@ -315,7 +315,7 @@ terms \emph{model}(Def. \ref{def:model}),\emph{domain} (Def. \ref{def:domain}) a
    \subsection{LEGO Mindstorms}
    Another example for a graphical modeling language made for novices is the EV3 Programmer App \ref{fig:ev3app}
    for LEGO Mindstorms which includes a block-based graphical modeling langue for creating programms
-   for the LEGO MindStorm Robots. Programs are loaded and executed on a EV3 Programmable Brick (Fig. \ref{ev3pbrick}), 
+   for the LEGO MindStorm Robots. Programs are loaded and executed on a EV3 Programmable Brick (Fig. \ref{fig:ev3pbrick}), 
    which offers input and output connections for interaction with sensors and actuators.
    Different colors are used to indicate whether a blocks triggers some action (green; Fig. \ref{fig:actionblocks}), is used for flow control (orange; Fig. \ref{fig:flowblocks}),
    reads data from some input (e.g. color sensor)(yellow; Fig.\ref{fig:sensorblocks}) or trigger some data operation (e.g. read/write some variable) (red; Fig. \ref{fig:operationsblocks}).
