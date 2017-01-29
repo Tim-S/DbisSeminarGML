@@ -6,7 +6,7 @@ services:
   - docker
   
 before_install:
-- docker build -t schneidertim/latex
+- docker pull schneidertim/latex
 
 script:
 - mkdir _build
