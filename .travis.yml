@@ -6,11 +6,13 @@ services:
   - docker
   
 before_install:
-- docker build -t thubo/latexmk
+- docker build -t schneidertim/latex
 
 script:
 - mkdir _build
-- docker run --name $(basename $PWD) --rm -v ${PWD}:/data thubo/latexmk -outdir=_build seminar.tex
+- make clean seminar.pdf
+- make clean-src
+- mv seminar.pdf _build/seminar.pdf
 
 deploy:
   provider: releases
