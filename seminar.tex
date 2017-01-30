@@ -56,38 +56,92 @@ There are approaches that enable novices with few or even no programming skills 
 Domain experts on the other hand use modeling languages to create models to 
 allow them to focus on domain-specific problems instead of implementation-specific details like supported 
 language features of a programming language. 
-In this paper we will give an brief overview over different domain-specific modeling langues with a focus on modeling languages for novices
+In this paper we will give an brief overview over different domain-specific modeling languages with a focus on modeling languages for novices
 as well as describe features offered by Xtext and GMF supporting the creation of textual and graphical modeling languages.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
-For centuries people from da Vinci to Einstein have created models [\ref{def:model}] to help them better 
-understand patterns and processes in the world around them. 
-Nowadays computers and smartphones have become an integral part of our everyday life, making
-it easier to build our own models and learn new ideas in the process.
-Domain Specific Modeling can support both experts and novices in building models for different domains.
-There are approaches (e.g. LEGO Mindstorms,Starlogo) that enable novices with few or even no programming 
-skills at all to implement their own models. Domain experts on the other hand use modeling languages 
-(e.g. SimuLink,BPMN) designed for a specific domain to create models, which allows them to focus on 
-domain-specific problems instead of implementation-specific details like supported 
-language features of a general pupose programming language (e.g. C,C++,Java).
-In this paper we will give a an overview about domain specific modeling languages for novices.
-Additionally we will present the tools Xtext and GMF for creating textual and graphical modeling languages. 
+This chapter describes the motivation for using and creating domain-specific modeling languages. 
+It also gives a brief overview over the contents of these paper.
 
-\include{projectswing}
+\subsection{Motivation}
+For centuries people from da Vinci to Einstein have created models [\ref{def:model}] to help them better 
+understand patterns and processes in the world around them. Nowadays computers and smartphones have 
+become an integral part of our everyday life, making it easier to build our own models and learn new ideas in the process.
+The majority of the users of these devices has few or even no programming skills at all.
+Therefore if these users want to have their own models implemented, specialists need to be engaged to create software based on the users requirements. 
+
+In traditional software development these specialists include project-leaders, analysts, developers that need 
+to communicate with each other and the end-user, which can be error prone.
+Each of these specialist perceives different aspects of the requirements as important and therefore creates a different mental model
+and the resulting software may not correspond to the end-users needs. 
+Figure \ref{fig:swingexample} shows an example how different requirements are perceived by the stakeholders in the traditional software development process:
+An end-user explains the requirements to the project-leader, who removes details that are perceived not relevant for the software.
+Often, the decision if a detail (e.g. additional swing seats) is relevant for the solution is made unconsciously. 
+As the project leader communicates the requirements to an analyst, the analyst adds and removes other details 
+to his personal mental model that are perceived relevant. So does a programmer who implements the requirements as a software.
+As a result the implemented software may not be as the end-user really needed.
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}\hline
+&&&&\\
+\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howexplained}
+\caption*{\tiny \centering How the customer explained it}\label{fig:howexplained}\end{subfigure}&
+\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howunderstood}
+\caption*{\tiny \centering How the project-leader understood it}\label{fig:howunderstood}\end{subfigure}&
+\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howdesigned}
+\caption*{\tiny \centering How the analyst designed it}\label{fig:howdesigned}\end{subfigure}&
+\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howprogrammed}
+\caption*{\tiny \centering How the programmer wrote it}\label{fig:howprogrammed}\end{subfigure}&
+%\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.8\columnwidth]{images/howdocumented}
+%\caption{How it was documented}\label{fig:howdocumented}\end{subfigure}\\
+%\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.85\columnwidth]{images/howinstalled}
+%\caption*{\centering  What operations installed}\label{fig:howinstalled}\end{subfigure}&
+%\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.8\columnwidth]{images/howbilled}
+%\caption{How the customer was billed}\label{fig:howbilled}\end{subfigure}&
+%\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.85\columnwidth]{images/howsupported}
+%\caption*{\centering How it was supported\newline}\label{fig:howsupported}\end{subfigure}&
+%\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howdescribed}
+%\caption*{\tiny \centering How it was promoted}\label{fig:howsupported}\end{subfigure}&
+%\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.85\columnwidth]{images/whendelivered}
+%\caption*{\centering  When it was delivered\newline}\label{fig:whendelivered}\end{subfigure}\\
+\begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/whatneeded}
+\caption*{\tiny \centering What the customer really needed}\label{fig:whatneeded}\end{subfigure}\\
+\hline
+\end{tabular}
+\caption{Error prone communication chain in the software development process due to different mental models.}
+\label{fig:swingexample}
+\end{center}
+\end{figure}
+To avoid errors originating from the communication between the end-user and other stakeholders (e.g. project-leader, analyst, developer)
+it is desirable to empower the end-user to implement his own models. 
+One approach to achieve this goal is providing domain-specific modeling languages to support an 
+end-user in implementing his own models using languages using terms and concepts from a domain that he understands.
+
+\subsection{Road Map}
+This paper includes different aspect of domain-specific modeling languages:
+The first part of this paper gives a brief introduction into the fundamentals of domain-specific modeling languages.
+In the second part different  modeling languages languages are presented that allow end-users with few or no
+programming skills to implement their own models in software.
+Additionally,the third part of this paper presents the tools Xtext and GMF to create different kinds of domain-specific modeling languages
+based on meta-models utilizing the Eclipse Modeling Framework (EMF).
+
 % \begin{itemize}
 %  \item can help experts and novices builing Models for different domains
 %  \item enables novices with few or even no programming skills at all to implement their own models (e.g. MindStorm,Starlogo)
 %  \item supports domain experts by setting focus on the domain-specific problems (e.g. SimuLink,BPMN)
 %   \end{itemize}
 
-\subsection{Foundation}
+\section{Fundamentals}
 \label{subsec:introduction}
-Before speaking about domain specific modeling languages we will give a short definitions for the  
-terms \emph{model}(Def. \ref{def:model}),\emph{domain} (Def. \ref{def:domain}) and \emph{domain-specific modeling language}.
+This section gives a brief overview over the fundamentals of domain-specific modeling languages 
+and the terms used in the following sections. This includes Definitions of the terms \emph{model}(Def. \ref{def:model}),
+\emph{domain}(Def. \ref{def:domain}), textual- and graphical domain-specific modeling languages.
 
+A domain-specific modeling language 
 \subsubsection{Model}
+
 % \begin{itemize}
 %  \item What is a model? (Definition  [Stachowiak]
 %  + some Explanation)
