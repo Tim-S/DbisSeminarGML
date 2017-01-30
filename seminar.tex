@@ -110,21 +110,21 @@ As a result the implemented software may not be as the end-user really needed.
 \caption*{\tiny \centering What the customer really needed}\label{fig:whatneeded}\end{subfigure}\\
 \hline
 \end{tabular}
-\caption{Error prone communication chain in the software development process due to different mental models.}
+\caption{Communication chain in the software development process with different mental models.}
 \label{fig:swingexample}
 \end{center}
 \end{figure}
-To avoid errors originating from the communication between the end-user and other stakeholders (e.g. project-leader, analyst, developer)
+To avoid errors originating from the communication between the end-user and other stakeholders (e.g. project-leader, analyst, developer), 
 it is desirable to empower the end-user to implement his own models. 
 One approach to achieve this goal is providing domain-specific modeling languages to support an 
 end-user in implementing his own models using languages using terms and concepts from a domain that he understands.
 
 \subsection{Road Map}
 This paper includes different aspect of domain-specific modeling languages:
-The first part of this paper gives a brief introduction into the fundamentals of domain-specific modeling languages.
-In the second part different  modeling languages languages are presented that allow end-users with few or no
+Section \ref{section:fundamentals} gives a brief introduction into the fundamentals of domain-specific modeling languages.
+In section \ref{section:dsml} different  modeling languages languages are presented that allow end-users with few or no
 programming skills to implement their own models in software.
-Additionally,the third part of this paper presents the tools Xtext and GMF to create different kinds of domain-specific modeling languages
+Additionally, section \ref{section:creatingdsmls} of this paper presents the tools Xtext and GMF to create different kinds of domain-specific modeling languages
 based on meta-models utilizing the Eclipse Modeling Framework (EMF).
 
 % \begin{itemize}
@@ -134,110 +134,67 @@ based on meta-models utilizing the Eclipse Modeling Framework (EMF).
 %   \end{itemize}
 
 \section{Fundamentals}
-\label{subsec:introduction}
+\label{section:fundamentals}
 This section gives a brief overview over the fundamentals of domain-specific modeling languages 
-and the terms used in the following sections. This includes Definitions of the terms \emph{model}(Def. \ref{def:model}),
-\emph{domain}(Def. \ref{def:domain}), textual- and graphical domain-specific modeling languages.
+and the terms used in the following sections. This includes Definitions of the terms \emph{model} (Def. \ref{def:model}), 
+\emph{domain} (Def. \ref{def:domain}) and \emph{domain-specific modeling languages}.
 
-A domain-specific modeling language 
-\subsubsection{Model}
-
-% \begin{itemize}
-%  \item What is a model? (Definition  [Stachowiak]
-%  + some Explanation)
-%  \item Abstraction: Remove details which do not serve the purpose
-% 
-%  \item Homomorphism: Statements on model elements hold for real world entities
-%  \item Pragmatics: Model has some purpose
-%  \item + example (novice) house Made of LEGOS $\rightarrow $ Model for a ``real'' house / building
-%  \item + example (expert) blueprints from an architekt $\rightarrow $ different model, but  represents same object in real 
-%  world
-%  
-%  \item Abstraction brings representational bias 
-%  \item $\rightarrow$ electric cable installations, water pipes cannot be ``expressed'' in lego but they can with blueprints
-%  \item $\rightarrow$ lego allows 3D Modeling while Blueprints cannot (oonly via 2d projections/ optical illusions)
-%  \end{itemize}
-%  
-  \begin{defn}
+\begin{defn}
     \label{def:model}
-    A \underline{Model} is a formal representation of entities and relationships in the real world (abstraction) 
+    A \underline{model} is a formal representation of entities and relationships in the real world (abstraction) 
     with a certain correspondence (homomorphism) for a certain purpose (pragmatics) \cite{stachowiak1973allgemeine}.
-  \end{defn}
-  
-  This definition contains three aspects: abstraction, homomorphism, pragmatics.
-  A model should create a simplified view on the represented entities and relationships and 
-  only contain details which are relevant (abstraction).
-  Additionally statements on the model elements should hold for the represented entities and relationships (homomorphism).
-  The question which details are relevant and should be included in the model is determined by the purpose of a model (pragmatics).  
- 
-  Creating models is something we do in our everday lifes:
-  When building a house in LEGO a child creates a model which serves as a representation for a building in the real world.
-  It is a simplified view on the original as it abstracts from detais like used materials, installed cables and water pipes and focusses
-  on the shapes of the building.
-  Another example for creating models is an architekt, who creates blueprints for some house, serving as a model for it.
-  Blueprints contain 2D projections of walls and installations in that house from different viewpoints and abstract from the original by ommiting
-  details like materials and some 3D information. 
-  We can see from this example that these abstraction also brings a representational bias:
-  Electric cable installations and water pipes cannot be modeled in LEGO but they can with blueprints.
-  LEGO models on the other hand allows to model structures directly in 3D while blueprints cannot.
-  
-  Although novices (e.g. the child) and experts(e.g. the architect) may have different views on the same thing (e.g. the house)
-  they share a common understanding in the concepts of the real world.  
-  \begin{defn}
-    \label{def:domain}
-    A \underline{Domain} is the common knowledge of the requirements, concepts and functionality in a field of study.
-  \end{defn}
-  Despite their different level of expertise, both experts and novices know that the concepts ``wall'' and ``roof'' are 
-  related to parts of a building and that a house needs both to be a valid house.
-%  \begin{itemize}
-%  \item novice and expert have different views on the same thing  but use different models / languages
-%  \item both models may be used in the context of a domain (Architekture)
-%  \item What is a Domain? (Definition + some Explanation)
-%  \end{itemize}
-  \begin{defn}
-    \label{def:domainspecificmodelinglanguage}
-    A \underline{Domain Specific Modeling Language} is a textual or graphical representation 
-    of the concepts, entities and relationships that are relevant for a specific domain.
-  \end{defn}
- \subsection{Domain-Specific Modeling Languages}
- The pupose of a domain-specific modeling languages is to support users in building models for a specific domain.
- Definition \ref{def:domainspecificmodelinglanguage} implies that there are two different kinds of modeling languages:
-  \begin{description}
-     \item[Graphical Modeling Languages] use graphical shapes, lines and arrows  to represent entities and relationships from the real world.
-     \item[Textual Modeling Languages] use textual descriptions to represent entities and relationships from the real world.
-  \end{description}
- The same model may be expressed in both, a graphical or textual modeling languages.
- For example: A finite state machine can be represented as a set of nodes, labeled boxes and arrows, while it can also be 
- represented by a textual description following a grammar to represent the same finite state machine.
-  \begin{figure}[H]
+\end{defn}
+This definition contains three aspects: abstraction, homomorphism and pragmatics.
+A model should create a simplified view on the represented entities and relationships and 
+only contain details, which are relevant for a given application scenario (abstraction).
+Additionally statements on the model elements should hold for the represented entities and relationships (homomorphism).
+The question, which details are relevant and therefore should be included in the model is determined by the purpose of a model (pragmatics).  
+\\\\
+Creating models is something we do in our everyday lives:
+When building a house using LEGO blocks a child creates a model which serves as a representation for a building in the real world.
+It is a simplified view on the original as it abstracts from details, like used materials, installed cables and water pipes and focuses
+on the shapes of the building. Another example for creating models is an architect, who creates blueprints for a house, serving as a model for it.
+Blueprints contain 2D projections of walls and installations from different viewpoints and abstract from the original by omitting
+details like materials and some 3D information. As one can see from these examples, these abstractions also contain a representational bias:
+Electric cable installations and water pipes cannot be expressed with LEGO but can with blueprints.
+LEGO models, on the other hand, allows to model 3D structures while blueprints cannot.
+In this example, the child and the architect have different views on the same thing (houses), but share a common understanding the real world.
+Despite their different level of expertise, both the child and the architect know that the concepts \textit{wall} and \textit{roof} 
+are related to parts of a building and that a house needs both to be a valid house.
+Based on this examples one can define the term \textit{domain} as follows:
+\begin{defn}
+\label{def:domain}
+A \underline{domain} is the common knowledge of the requirements, concepts and functionality in a field of application.
+\end{defn}
+Based on Def.\ref{def:model} and Def.\ref{def:domain} we define the term \emph{domain-specific modeling language}:
+\begin{defn}
+\label{def:domain}
+A \underline{domain-specific modeling language} is a textual or graphical representation of the concepts, entities and relationships that are 
+relevant for a specific domain.
+\end{defn}
+One can distinguish two types of domain-specific modeling language modeling languages:
+While \emph{textual modeling languages} use textual descriptions to represent entities and relationships from the real world,
+\emph{graphical modeling languages} use graphical shapes, lines and arrows for the same purpose.
+The same model may be expressed in both, a graphical or textual modeling languages.
+For example: A finite state machine can be represented as a set of nodes, labeled boxes and arrows, while it can also be 
+represented by a textual description following a grammar to represent the same finite state machine as seen in Fig. \ref{compare:textgraphiclang}.
+\begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
-      \captionof{figure}{Comparison between textual modeling language and graphcal modeling language for the same model of a finite state machine.}
-      \label{compare:textgraphiclang}for the
-    \end{figure}
- The decision whether a graphical modeling language or textual modeling language is chosen for the implementation of a modeling tool 
- may also be influenced by the targeted audience: A software-developer has a deep knowledge in using text-based editors, while 
- children may not have these kind of expertise and therefore prefer a more graphical representation. 
- Different levels of expertise can also be observed with regards to domain knowledge:
- A software-engineer probably has a more detailed knowledge in the computer science domain compared to a medical doctor.
- We will therefore distinguish between domain experts and novices. 
- Additionally, we will focus on domain-specific languages for novices in this paper.
- %  \begin{itemize}
-%  \item different approaches :  Graphical Modeling Languages, Textual Modeling Languages
-%  \item 
-%    \begin{figure}[ht]
-%       \centering
-%       \includegraphics[width=\textwidth]{images/GraficalTextualComparison.PNG}
-%       \captionof{figure}{comparison between textual modeling language and graphcal modeling language for the same model}
-%     \end{figure}
-%  
-%  \item examples (domain experts): BPMN , SimuLink
-%  \item examples (novice ): STARLOGO 
-%  \end{itemize}
- 
- \section{Domain-Specific Modeling Languages for Novices}
+      \includegraphics[width=.8\textwidth]{images/GraficalTextualComparison.PNG}
+      \captionof{figure}{Comparison between textual modeling language and graphical modeling language for the same model of a finite state machine.}
+      \label{compare:textgraphiclang}
+\end{figure}
+The decision whether a graphical modeling language or textual modeling language is chosen for the implementation of a modeling tool 
+may also be influenced by the targeted audience: A software-developer has a deep knowledge in using text-based editors, while 
+children may not have these kind of expertise and therefore prefer a more graphical representation. 
+Different levels of expertise can also be observed with regards to domain knowledge:
+A software-developer probably has a more detailed knowledge in the computer science domain compared to a medical doctor.
+
+
+ \section{Domain-Specific Modeling Languages}
+ \label{section:dsml}
  As there is a variety of software tools available, which implement different modeling languages, this section will give an overview 
- about modeling languages designed to support novices with few or even no programming languages in creating models and help them better 
+ about modeling languages designed to support users with few or even no programming languages in creating models and help them better 
  understand patterns and processes in the world around them.
  
  \subsection{StarLogo TNG}
@@ -260,7 +217,7 @@ A domain-specific modeling language
   \begin{figure}[H]
 	\centering
   \includegraphics[width=0.5\textwidth]{images/StarLogoTNGBlocksEx.PNG}
-	\caption{ StarLogo TNG’s graphical programming blocks. Example if (left) and repeat (right) blocks are shown. The
+	\caption{ StarLogo TNG’s graphical programming blocks. Example: \texttt{if} (left) and \texttt{repeat} (right) blocks are shown. The
 	  if block commands a Turtle agent to take two steps forward if it is green; the repeat block commands an agent to
 	  repeat five times the sequence of turning right 15 degrees and taking one step forward. (from \cite{smith2011biology})}
 	\label{fig1}
@@ -274,47 +231,54 @@ A domain-specific modeling language
 %   \end{itemize}
 
    \subsection{Scratch}
-  Scratch is graphical modeling languages for visual programming that allows users (primarily ages 8 to 16\cite{maloney2010scratch}) to learn
+  Scratch is graphical modeling languages for visual programming that allows users (primarily ages 8 to 16 \cite{maloney2010scratch}) to learn
   computer programming while working on personally meaningful projects such as animated stories and games. 
   A major design goal of Scratch is to support self-directed learning through tinkering and collaboration with peers \cite{maloney2010scratch}. 
-  Scratch uses blocks \ref{scratchblocks} similiar to StarLogoTNG for creating models. One of the key features of Scratch is that it is always \emph{live},
+  Scratch uses blocks (Fig.\ref{subfig:highlightconcepts}) similiar to StarLogo TNG for creating models. One of the key features of Scratch is that it is always \emph{live},
   which means that there is no compilation step or edit/run mode distinction. A user can see what a command or program fragment does by clicking 
   it at any time. This also implies that a user can change parameters or add new blocks to a script while it is running.
-  Because it is live Scratch encourages users to experiment with it and supports
+  Because it is live, Scratch encourages users to experiment with it and supports
   a bottom-up approach to writing scripts where small chunks of program fragments are assembled and tested, then combined into larger units.
-  Additionally Scratch provides visual feedback to show script execution by surrounding a script with a white border when it is 
+  Additionally, Scratch provides visual feedback to show script execution by surrounding a script with a white border when it is 
   running (Fig. \ref{scratchlive}). This feedback
-  helps the user understand when scripts are triggered and how long they run. If an error is encountered then border of the 
+  helps the user understand when scripts are triggered and how long they run. If an error is encountered then the border of the 
   affected script turns red and the block that caused the error is highlighted in red. 
-  Furthermore Scrach eliminates the need syntax error messages by using 
-  puzzle-piece shapes which only fit where it makes sense. Additionally Scratch tries to avoid runtime errors by making all blocks be
+  Furthermore Scratch eliminates the need for syntax error messages by using 
+  puzzle-piece shapes which only fit where it makes sense. Additionally, Scratch tries to avoid runtime errors by making all blocks be
   \textit{failsoft}. ``Rather than failing with an error message, every block attempts to do something sensible even when presented with out-of-range inputs''\cite{maloney2010scratch}.
-  Even though eliminating the runtime error messages does not eliminate the errors,by following this apprach a script can always be tested by the user.
-  Since a program that can be tested even if the result is incorrect it is favoured to not be able to run or compile it at all.
+  Even though eliminating the runtime error messages does not eliminate the errors, by following this approach, a script can always be tested by the user.
+  %Since a program that can be tested even if the result is incorrect, it is favoured to not be able to run or compile it at all.
+% \begin{figure}[h]
+% \begin{center}
+% \begin{tabular}{|c|c|}\hline
+% &\\
+% \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/Snatch1.PNG}
+% \caption*{\tiny \centering How the customer explained it}\label{fig:howexplained}\end{subfigure}&
+% \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/ScratchLive.png}
+% \caption*{\tiny \centering How the project-leader understood it}\label{fig:howunderstood}\end{subfigure}\\
+% \hline
+% \end{tabular}
+% \caption{Communication chain in the software development process with different mental models.}
+% \label{fig:swingexample}
+% \end{center}
+% \end{figure}
 
-     \begin{figure}[H]
-      \centering
-      \includegraphics[width=.7\textwidth]{images/ScratchBlockTypes.PNG}
-      \captionof{figure}{Scratch Block Types(from \cite{maloney2010scratch})}
-       \label{scratchblocks}
-    \end{figure} 
-        \begin{figure}[H]
-      \centering
-      \includegraphics[width=.7\textwidth]{images/ScratchLive.png}
-      \captionof{figure}{Blocks can be tested simply by clicking on them. A white border indicates that a block or
-      stack is running. Function blocks show their output in a  bubble.(from \cite{maloney2010scratch})}
-      \label{scratchlive}
-    \end{figure}
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=.7\textwidth]{images/Snatch1.PNG}
-      \captionof{figure}{Sample Scratch script (from Pong-like paddle game) highlighting computational and mathematical concepts}
-    \end{figure} 
-   
-  \newpage
+\begin{figure}[ht]
+\centering
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/ScratchLive.png}
+\caption{Blocks can be tested simply by clicking on them. A white border indicates that a block or 
+stack is running. Function blocks show their output in a  bubble.(from \cite{maloney2010scratch})}\label{subfig:blocktest}\end{subfigure}
+\hspace*{\fill}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/Snatch1.PNG}
+\caption{Sample Scratch script (from Pong-like paddle game) highlighting computational and mathematical concepts.}\label{subfig:highlightconcepts}\end{subfigure}
+\begin{subfigure}[t]{0.9\textwidth}\vspace{1cm}\centering\includegraphics[width=0.9\columnwidth]{images/ScratchBlockTypes.PNG}
+\caption{Scratch Block Types. (from \cite{maloney2010scratch})}\end{subfigure}
+\caption{Concepts in Scratch for supporting users with programming.}
+\end{figure}
+
   \subsection{PhyDSL}
   Both StarLogo and Scratch use graphical modeling languages for creating models. 
-  \emph{PhyDSL} is a tool, designed as an Eclipse\cite{eclipse} plugin that uses a textual modeling language for creating models for the game development domain.
+  \emph{PhyDSL} is a tool, designed as an Eclipse plugin that uses a textual modeling language for creating models for the game development domain.
   It was designed for the purpose of supporting the fast prototyping of physics-based games, including platform, shoot ’em up, 
   puzzle and maze games \cite{guana2014phydsl}. 
   The provided frontend includes a text editor (including syntax highlighting and text completion), which is used to define gameplay in highlevel
@@ -340,34 +304,19 @@ A domain-specific modeling language
 %     \end{itemize}
 %   
 %   \end{itemize}
-     \begin{figure}[H]
-      \centering
-      \includegraphics[width=\textwidth]{images/PhyDSL1.PNG}
-      \captionof{figure}{PhyDSL: Static Actor Definition (from  \cite{guana2014phydsl})}
-      \label{actordef}
-    \end{figure}
-      \begin{figure}[H]
-      \centering
-      \includegraphics[width=\textwidth]{images/PhyDSL2.PNG}
-      \captionof{figure}{PhyDSL: Environment and Layout Definition(from  \cite{guana2014phydsl})}
-      \label{envdef}
-    \end{figure}
-  \begin{figure}[H]
-      \centering
-      \includegraphics[width=\textwidth]{images/PhyDSL3.PNG}
-      \captionof{figure}{PhyDSL: Activities Definition(from  \cite{guana2014phydsl})}
-      \label{activitiesdef}
-    \end{figure}
-
 \begin{figure}[H]
-      \centering
-      \includegraphics[width=\textwidth]{images/PhyDSL4.PNG}
-      \captionof{figure}{PhyDSL - Scoring Rule Definition for Collision Rules (from  \cite{guana2014phydsl})}
-      \label{rulesdef}
-    \end{figure}
+\centering
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/PhyDSL3.PNG}
+\caption{Activities Definition}\label{activitiesdef}\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/PhyDSL2.PNG}
+\caption{Environment and Layout Definition}\label{envdef}\end{subfigure}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/PhyDSL1.PNG}
+\caption{Static Actor Definition}\label{actordef}\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/PhyDSL4.PNG}
+\caption{Scoring Rule Definition for Collision Rules}\label{rulesdef}\end{subfigure}
+\caption{Phydsl:  describing the gameplay static, dynamic elements and their behaviors. (from  \cite{guana2014phydsl})}
+\end{figure}
 
-   \pagebreak
-   
    \subsection{LEGO Mindstorms}
    Another example for a graphical modeling language made for novices is the EV3 Programmer App \ref{fig:ev3app}
    for LEGO Mindstorms which includes a block-based graphical modeling langue for creating programms
@@ -382,31 +331,18 @@ A domain-specific modeling language
 %   \item programms are executed on the EV3 P-brick. 
 %   %https://www.lego.com/en-us/mindstorms/learn-to-program
 %   \end{itemize}
-  
-  \begin{minipage}{.5\textwidth} %
-	  \centering
-    \includegraphics[width=\textwidth]{images/LearnToProgram_action_blocks_landscape.png}
-	  \captionof{figure}{The action blocks control the actions of the program, e.g. motor rotations, image, sound and the light on the EV3 P-brick (from \cite{legoev3}).}
-	  \label{fig:actionblocks}
-  \end{minipage} %
-  \begin{minipage}{.5\textwidth} %
-	  \centering
-    \includegraphics[width=\textwidth]{images/LearnToProgram_sensor_blocks_landscape.png}
-	 \captionof{figure}{The sensor blocks allow to read the inputs e.g. from a color sensor, IR sensor, touch sensor (from \cite{legoev3}).}
-	 \label{fig:sensorblocks}
-  \end{minipage}
-  \begin{minipage}{.5\textwidth} %
-	  \centering
-    \includegraphics[width=\textwidth]{images/LearnToProgram_operations_blocks_landscape.png}
-    \captionof{figure}{The data operation blocks let the user write and read variables, compare values for example (from \cite{legoev3}).}
-    \label{fig:operationsblocks}
-  \end{minipage}
-  \begin{minipage}{.5\textwidth} %
-	  \centering
-    \includegraphics[width=\textwidth]{images/LearnToProgram_flow_blocks_landscape.png}
-    \captionof{figure}{The Flow blocks control the flow of the program (from \cite{legoev3}).}
-    \label{fig:flowblocks}
-  \end{minipage}
+  \begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/LearnToProgram_action_blocks_landscape.png}
+\caption{The action blocks control the actions of the program, e.g. motor rotations, image, sound and the light on the EV3 P-brick.}\label{fig:actionblocks}\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/LearnToProgram_sensor_blocks_landscape.png}
+\caption{The sensor blocks allow to read the inputs, e.g. from a color sensor, IR sensor, touch sensor.} \label{fig:sensorblocks}\end{subfigure}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/LearnToProgram_operations_blocks_landscape.png}
+\caption{The data operation blocks let the user write and read variables, compare values for example }\label{fig:operationsblocks}\end{subfigure}\hspace*{\fill}
+\begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/LearnToProgram_flow_blocks_landscape.png}
+\caption{The Flow blocks control the flow of the program.}\label{fig:flowblocks}\end{subfigure}
+\caption{LEGO EV3 Programmer App: Different block types. (from \cite{legoev3})}
+\end{figure}
   
     \begin{figure}[H]
 	  \centering
@@ -429,9 +365,8 @@ A domain-specific modeling language
 %      \item enables people without programming skills to build mobile data collection and management tools for citizen science
 %     \end{itemize}
 
-    
-    \newpage
     \section{Creating Domain-Specific Modeling Languages}
+    \label{section:creatingdsmls}
     Domain-Specific Modeling Languages are implemented in various software tools using textual or graphical modeling languages.
     In fact, there are approaches to define these modeling languages as models using some kind of meta-language.
     Xtext and GMF are implementions for the Eclipse Modeling Framework (EMF), which adopt this approach.
