@@ -19,6 +19,7 @@
 \usepackage{subcaption}
 \usepackage{float}% exact position of figures
 \usepackage[backend=biber]{biblatex}
+\usepackage{listings}
 %\usepackage[T1]{fontenc}
 \bibliography{citations}
 
@@ -116,7 +117,7 @@ As a result the implemented software may not be as the end-user really needed.
 \end{figure}
 To avoid errors originating from the communication between the end-user and other stakeholders (e.g. project-leader, analyst, developer), 
 it is desirable to empower the end-user to implement his own models. 
-One approach to achieve this goal is providing domain-specific modeling languages to support an 
+One approach to achieve this goal is by providing domain-specific modeling languages to support an 
 end-user in implementing his own models using languages using terms and concepts from a domain that he understands.
 
 \subsection{Road Map}
@@ -344,26 +345,14 @@ stack is running. Function blocks show their output in a  bubble.(from \cite{mal
 \caption{LEGO EV3 Programmer App: Different block types. (from \cite{legoev3})}
 \end{figure}
   
-    \begin{figure}[H]
+\begin{figure}[H]
 	  \centering
-    \includegraphics[width=0.5\textwidth]{images/mindstorms0.PNG}
-	  \caption{EV3 Programmer App on a tablet used to create programms using a graphical modeling language. (from \cite{legoev3})}
-	  \label{fig:ev3app}
-    \end{figure}
-
-
-      \begin{figure}[H]
-	        \centering
-      \includegraphics[width=0.5\textwidth]{images/ev3brick.png}
-	    \captionof{figure}{EV3 Programmable Brick with connections for different sensors and actuators. (from \cite{legoev3})}
-	    \label{fig:ev3pbrick}
-      \end{figure}
-
-
-%     \subsection{Sensr}
-%     \begin{itemize}
-%      \item enables people without programming skills to build mobile data collection and management tools for citizen science
-%     \end{itemize}
+	  \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/mindstorms0.PNG}
+	  \caption{EV3 Programmer App on a tablet used to create programms using a graphical modeling language. }\label{fig:ev3app}\end{subfigure}\hspace*{\fill}
+	  \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/ev3brick.png}
+	  \caption{EV3 Programmable Brick with connections for different sensors and actuators. }  \label{fig:ev3pbrick}\end{subfigure}
+	  \caption{ Programms are created e.g. on a tablet (Fig. \ref{fig:ev3app}) and transfered to a EV3 Programmable Brick (Fig. \ref{fig:ev3pbrick}). (from \cite{legoev3})}
+\end{figure}
 
     \section{Creating Domain-Specific Modeling Languages}
     \label{section:creatingdsmls}
@@ -380,23 +369,29 @@ stack is running. Function blocks show their output in a  bubble.(from \cite{mal
     As the modeling language definitions are stored in the Ecore format \footnote{Ecore is a (meta-)model included in the Eclipse Modeling Framework (EMF), which is used to describe with elements, attributes and relationships are allowed 
     in a model. It is an implementation of the \emph{Meta Object Facility} (MOF) Standard \cite{mof20062}, specified by the OMG.}, other tools in the EMF framework can process data from the parsed 
     models (e.g. Acceleo\cite{musset2006acceleo} for performing codegeneration).  
-    
-    \begin{figure}[H]
-      \centering
-      \label{fig:fsmgrammar}
-      \includegraphics[width=\textwidth]{images/XTextGrammar.PNG}
-      \captionof{figure}{Xtext grammar of a textual modeling language for finite state machines. 
+
+    \lstset{
+  caption={Xtext grammar of a textual modeling language for finite state machines. 
       Figure \ref{compare:textgraphiclang} contains an textual description of a state machine 
-      which follows this grammar definition.}
-    \end{figure}
-   
+      which follows this grammar definition.}, 
+  basicstyle=\footnotesize, frame=tb,
+  xleftmargin=.05\textwidth, xrightmargin=.05\textwidth
+}
+\begin{lstlisting}[captionpos=b, label={fig:fsmgrammar}]
+FSM: 
+  "States:" (states+=State) (",")?)* 
+  "Transitions" (transitions+=Transition (",")?)*;
+State: 
+  id=ID isStarte?="(start)" isStop?="(stop)";
+Transition: 
+  fromState=[State] "-" (input)? "->" toState=[State];
+\end{lstlisting}
 %     \begin{itemize}
 %       \item used to create textual DSLs for ecore (meta-)models designed in EMF
 %       \item syntax similar to EBNF
 %       \item one rule for each (meta-)model element
 %     \end{itemize}
 %    
-    
     \subsection{GMF}
     The Eclipse Graphical Modeling Framework(GMF \cite{gmf}) provides a generative component and runtime infrastructure for developing 
     editors for graphical modeling languages for models created in the Eclipse Modeling Framework.
@@ -411,11 +406,10 @@ stack is running. Function blocks show their output in a  bubble.(from \cite{mal
     and arrows for transitions. To actually assign a shape to some domain model element a reference between model element from the domain model 
     and some shape of the graph model must be added to the mapping model. Finally one has to define which elements can be created using the context 
     menu in the generated graphical editor.
-
-    \begin{figure}[ht]
+    \begin{figure}[H]
       \centering
-      \includegraphics[width=\textwidth]{images/TableGMFSteps.PNG}
-      \captionof{figure}{Models needed to create a graphical editor using GMF.}
+      \includegraphics[width=.7\textwidth]{images/TableGMFSteps.PNG}
+      \captionof{figure}{Models needed to create a graphical editor with GMF for the Finite State Machine example.}
       \label{mapmodel}
     \end{figure}
     
