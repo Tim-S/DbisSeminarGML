@@ -61,24 +61,28 @@ skills in programming a graphical model editor.
 \end{abstract}
 
 \section{Introduction}
-Computers and smartphones have become an integral part of our everyday life, making it easier to build our own models and learn new ideas in the process.
-The majority of the users of these devices has few or even no programming skills at all.
-Therefore if these users want to have their own models implemented, specialists need to be engaged to create software based on the users descriptions. 
-In traditional software development these specialists include project-leaders, analysts, developers that need 
-to communicate with each other and the end-user, which can be error prone.
-Each of these specialist perceives different aspects of the description as important and therefore creates a different mental model
-and as a result the created software may not correspond to the end-users needs. 
-Fig. \ref{fig:swingexample} illustrates how the users description is perceived by the stakeholders in the traditional software development process:
-An end-user explains ideas to the project-leader, who removes details that are perceived not relevant for the solution of a software related problem.
-Often, the decision if a detail (e.g. additional swing seats) is relevant for the solution is made unconsciously. 
-As the project leader communicates the perceived information to an analyst, the analyst adds and removes other details, biased by his own mental model of the world. 
-So does a programmer who implements the software. As a result, the implemented software may not be what the end-user really needed.
+Computers and smartphones have become an integral part of our everyday life, 
+making software development becoming increasingly important over the last years.
+As software development projects are getting bigger and more complex it is desirable to  
+support domain experts using their knowledge for implementing IT systems.
+Most domain experts have few or even no programming skills at all, which requires them to engage specialists to
+create software based on their description. 
+In traditional software development these specialists include project-leaders, analysts and developers that need 
+to communicate with each other to implement features based on domain experts descriptions. 
+This communication overhead can be time-consuming and error prone as the involved stakeholders
+create their very own abstractions when dealing with these descriptions during the software development process.
+As a result the created software may not correspond to the domain experts intents.
+Fig. \ref{fig:swingexample} illustrates how the domain experts description is perceived by the different stakeholders:
+Ideas, described by a domain expert, are percieved by a project-leader in a biased way, removing details that are perceived not relevant for the solution
+of the described problem. Often, the decision if a detail (e.g. additional swing seats) is relevant for the solution is made unconsciously. 
+A project leader communicates the perceived information to an analyst, who build his own abstraction of the problem by adding or removing other details
+that are percieved relevant. So does a programmer who implements the software. As a result, the implemented software may not be what the end-user really needed.
 \begin{figure}[h]
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}\hline
 &&&&\\
 \begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howexplained}
-\caption*{\tiny \centering How the customer explained it}\label{fig:howexplained}\end{subfigure}&
+\caption*{\tiny \centering How the domain expert explained it}\label{fig:howexplained}\end{subfigure}&
 \begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howunderstood}
 \caption*{\tiny \centering How the project-leader understood it}\label{fig:howunderstood}\end{subfigure}&
 \begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/howdesigned}
@@ -98,24 +102,24 @@ So does a programmer who implements the software. As a result, the implemented s
 %\begin{subfigure}{0.2\textwidth}\centering\includegraphics[width=0.85\columnwidth]{images/whendelivered}
 %\caption*{\centering  When it was delivered\newline}\label{fig:whendelivered}\end{subfigure}\\
 \begin{subfigure}[t]{0.15\textwidth}\centering\includegraphics[width=0.9\columnwidth]{images/whatneeded}
-\caption*{\tiny \centering What the customer really needed}\label{fig:whatneeded}\end{subfigure}\\
+\caption*{\tiny \centering What the user really needed}\label{fig:whatneeded}\end{subfigure}\\
 \hline
 \end{tabular}
 \caption{Biased perception of information in the software development process, based on different mental models. [images from \cite{projectcartoon}]}
 \label{fig:swingexample}
 \end{center}
 \end{figure}
-To avoid errors originating from the biased perception and communication of information by the different stakeholders (i.e. end-user, project-leader, analyst, developer), 
-it is desirable to enable end-users to implement their own models and make share it with other users. 
-One approach to achieve this goal is by providing domain-specific modeling languages to support 
-end-users in implementing own models using modeling languages using terms and concepts from domains that they well understand.
+To avoid errors originating from the biased perception of information by the different stakeholders (i.e. end-user, project-leader, analyst, developer), 
+it is desirable to enable domain-experts to implement their own ideas.
+General purpose programming languages, on the other hand, can be hard to learn for people without programming skills.
+Domain-specific modeling offers an approach to ease the need to learn a general purpose programming
+by creating \emph{models} (Def. \ref{def:model}) with \ref{domain-specific modeling languages} (Def. \ref{def:dsml})
+using using terms and concepts they well understand by domain experts.
 
-This paper includes different aspect of domain-specific modeling languages:
-It gives a brief introduction into the fundamentals of domain-specific modeling languages and presents
-different  modeling languages languages allow end-users with few or no
-programming skills to implement their own models.
-Additionally, the tools Xtext and GMF are persented, which allowing the creation of different kinds of domain-specific modeling languages
-based on meta-models utilizing the Eclipse Modeling Framework (EMF).
+Therefore this paper gives a brief introduction into the fundamentals of domain-specific modeling languages and presents
+different  modeling languages languages, which allow end-users with few or no programming skills to implement their own models.
+Additionally, the tools Xtext and GMF are persented, which allow the creation of different kinds of domain-specific modeling languages
+based on a kind of meta-model utilizing the Eclipse Modeling Framework (EMF).
 
 % \begin{itemize}
 %  \item can help experts and novices builing Models for different domains
@@ -209,7 +213,7 @@ A software-developer probably has a more detailed knowledge in the computer scie
   \includegraphics[width=0.5\textwidth]{images/StarLogoTNGBlocksEx.PNG}
 	\caption{ StarLogo TNG’s graphical programming blocks. Example: \texttt{if} (left) and \texttt{repeat} (right) blocks are shown. The
 	  if block commands a Turtle agent to take two steps forward if it is green; the repeat block commands an agent to
-	  repeat five times the sequence of turning right 15 degrees and taking one step forward. [from \cite{smith2011biology}]}
+	  repeat five times the sequence of turning right 15 degrees and taking one step forward. [images from \cite{smith2011biology}]}
 	\label{fig1}
   \end{figure}
   
