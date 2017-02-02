@@ -61,15 +61,9 @@ skills in programming a graphical model editor.
 \end{abstract}
 
 \section{Introduction}
-\label{sec:introduction}
-This chapter describes the motivation for using and creating domain-specific modeling languages. 
-It also gives a brief overview over the contents of these paper.
-
-\subsection{Motivation}
 Computers and smartphones have become an integral part of our everyday life, making it easier to build our own models and learn new ideas in the process.
 The majority of the users of these devices has few or even no programming skills at all.
 Therefore if these users want to have their own models implemented, specialists need to be engaged to create software based on the users descriptions. 
-
 In traditional software development these specialists include project-leaders, analysts, developers that need 
 to communicate with each other and the end-user, which can be error prone.
 Each of these specialist perceives different aspects of the description as important and therefore creates a different mental model
@@ -107,7 +101,7 @@ So does a programmer who implements the software. As a result, the implemented s
 \caption*{\tiny \centering What the customer really needed}\label{fig:whatneeded}\end{subfigure}\\
 \hline
 \end{tabular}
-\caption{Biased perception of information in the software development process, based on different mental models.}
+\caption{Biased perception of information in the software development process, based on different mental models. [images from \cite{projectcartoon}]}
 \label{fig:swingexample}
 \end{center}
 \end{figure}
@@ -116,12 +110,11 @@ it is desirable to enable end-users to implement their own models and make share
 One approach to achieve this goal is by providing domain-specific modeling languages to support 
 end-users in implementing own models using modeling languages using terms and concepts from domains that they well understand.
 
-\subsection{Road Map}
 This paper includes different aspect of domain-specific modeling languages:
-Section \ref{section:fundamentals} gives a brief introduction into the fundamentals of domain-specific modeling languages.
-In section \ref{section:dsml} different  modeling languages languages are presented that allow end-users with few or no
+It gives a brief introduction into the fundamentals of domain-specific modeling languages and presents
+different  modeling languages languages allow end-users with few or no
 programming skills to implement their own models.
-Additionally, section \ref{section:creatingdsmls} of this paper presents the tools Xtext and GMF, allowing the creation of different kinds of domain-specific modeling languages
+Additionally, the tools Xtext and GMF are persented, which allowing the creation of different kinds of domain-specific modeling languages
 based on meta-models utilizing the Eclipse Modeling Framework (EMF).
 
 % \begin{itemize}
@@ -270,7 +263,7 @@ stack is running. Function blocks show their output in a  bubble.}\label{subfig:
 \caption{Sample Scratch script (from Pong-like paddle game) highlighting computational and mathematical concepts.}\label{subfig:highlightconcepts}\end{subfigure}
 \begin{subfigure}[t]{0.9\textwidth}\vspace{1cm}\centering\includegraphics[width=0.9\columnwidth]{images/ScratchBlockTypes.PNG}
 \caption{Scratch block types.}\end{subfigure}
-\caption{Concepts in Scratch for supporting users with programming. [from \cite{maloney2010scratch}]}
+\caption{Concepts in Scratch for supporting users with programming. [images from \cite{maloney2010scratch}]}
 \end{figure}
 
   \subsection{PhyDSL}
@@ -312,7 +305,7 @@ stack is running. Function blocks show their output in a  bubble.}\label{subfig:
 \caption{Static Actor Definition}\label{actordef}\end{subfigure}\hspace*{\fill}
 \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/PhyDSL4.PNG}
 \caption{Scoring Rule Definition for Collision Rules}\label{rulesdef}\end{subfigure}
-\caption{Phydsl:  describing the gameplay static, dynamic elements and their behaviors. [from  \cite{guana2014phydsl}]}
+\caption{Phydsl:  describing the gameplay static, dynamic elements and their behaviors. [images from  \cite{guana2014phydsl}]}
 \end{figure}
 
    \subsection{LEGO Mindstorms}
@@ -339,7 +332,7 @@ stack is running. Function blocks show their output in a  bubble.}\label{subfig:
 \caption{The data operation blocks let the user write and read variables, compare values for example }\label{fig:operationsblocks}\end{subfigure}\hspace*{\fill}
 \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/LearnToProgram_flow_blocks_landscape.png}
 \caption{The Flow blocks control the flow of the program.}\label{fig:flowblocks}\end{subfigure}
-\caption{LEGO EV3 Programmer App: Different block types. [from \cite{legoev3}]}
+\caption{LEGO EV3 Programmer App: Different block types. [images from \cite{legoev3}]}
 \end{figure}
   
 \begin{figure}[H]
@@ -348,7 +341,7 @@ stack is running. Function blocks show their output in a  bubble.}\label{subfig:
 	  \caption{EV3 Programmer App on a tablet used to create programms using a graphical modeling language. }\label{fig:ev3app}\end{subfigure}\hspace*{\fill}
 	  \begin{subfigure}[t]{0.45\textwidth}\centering\includegraphics[width=.9\columnwidth]{images/ev3brick.png}
 	  \caption{EV3 Programmable Brick with connections for different sensors and actuators. }  \label{fig:ev3pbrick}\end{subfigure}
-	  \caption{EV3: Programming and execution are performed on different devices (Fig. \ref{fig:ev3app};\ref{fig:ev3pbrick}). [from \cite{legoev3}]}
+	  \caption{EV3: Programming and execution are performed on different devices (Fig. \ref{fig:ev3app};\ref{fig:ev3pbrick}). [images from \cite{legoev3}]}
 \end{figure}
 
     \section{Creating Domain-Specific Modeling Languages}
